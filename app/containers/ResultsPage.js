@@ -60,7 +60,9 @@ var ResultsPage = React.createClass({
 		        	</ol>
 		        </div>
 		        <div className='jumbotron col-sm-12 text-center jumbotron-fluid' style={styles.transparentBg}>
+		        <Link to='/homebrew'>
 		        <button type='button' className='btn btn-lg text-center btn-primary'> Try Again! </button>
+		        </Link>
 		        </div>
 			</div>
 			);
