@@ -1,4 +1,5 @@
 var React = require('react');
+var styles = require('../styles');
 var transparentBg = require('../styles/index.js').transparentBg;
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -45,8 +46,8 @@ var BarPage = React.createClass({
             var tempFirstBar = {};
 
             $.each(data.response.venues, function (i, venues) {
-                  name = venues.name;
-                  distance = venues.location.distance;
+                  var name = venues.name;
+                  var distance = venues.location.distance;
                   tempBarArray.push({
                     name: name,
                     distance: distance,
@@ -75,7 +76,7 @@ var BarPage = React.createClass({
 
   renderBarComponents: function () {
     return this.state.barArray.map(function (name, index) {
-      return <p key={index}>{name.name}</p>;
+      return <p key={index} style={{color: 'white'}}>{name.name}</p>;
     });
   },
 
@@ -83,15 +84,28 @@ var BarPage = React.createClass({
 
     return (
       <div>
+        <nav className="navbar navbar-light" style={styles.navBg}>
           <Link to='/'>
-          <button type='button' className='btn btn-secondary col-sm-2' > Home </button>
+          <a className="navbar-brand" style={{color: 'black'}}>Mixology University</a>
           </Link>
+          <ul className="nav navbar-nav" style={{float: "right"}}>
+            <li className="nav-item active" >
+              <Link to='/menu'><a className="nav-link"style={{color: 'black'}}>Library <span className="sr-only">(current)</span></a></Link>
+            </li>
+            <li className="nav-item">
+              <Link to='/barpage'><a className="nav-link" style={{color: 'black'}}>Bars</a></Link>
+            </li>
+            <li className="nav-item">
+              <Link to='/homebrew'><a className="nav-link" style={{color: 'black'}}>Brew</a></Link>
+            </li>
+          </ul>
+        </nav>
         <div className='jumbotron col-sm-12 text-center' style={transparentBg}>
-          <h1> <b>Nearest Bar</b> </h1>
-          <h3> <i>{this.state.firstBar.name} </i></h3>
+          <h1 style={{color: 'white'}}> <b>Nearest Bar</b> </h1>
+          <h3 style={{color: 'white'}}> <i>{this.state.firstBar.name} </i></h3>
 
-          <h5> {this.state.firstBar.secondAddress}</h5>
-          <h3> <b>Other Nearby Bars </b></h3>
+          <h5 style={{color: 'white'}}> {this.state.firstBar.secondAddress}</h5>
+          <h3 style={{color: 'white'}}> <b>Other Nearby Bars </b></h3>
           {this.renderBarComponents()}
         </div>
       </div>

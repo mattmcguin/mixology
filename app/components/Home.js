@@ -26,20 +26,27 @@ var Home = React.createClass({
         this.getFromLocalStorage('drinkList');
         return (
             <div>
-              <div className='jumbotron col-sm-12 text-center' style={styles.transparentBg}>
-                <h1> Mixology University </h1>
-                <Link to='/menu'>
-                <div style={styles.space}><button type='button' className='btn btn-lg btn-secondary col-sm-6 col-sm-offset-3'> ◀︎ Menu  </button></div>
-                </Link>
-                <Link to='/homebrew'>
-                <div className='jumbotron col-sm-12 text-center' style={styles.transparentBg}>
-                <img src='../../Two-Glasses-of-Beer-6.png' />
-                </div>
-                </Link>
-                <Link to='/barpage'>
-                <div style={styles.space}><button type='button' className='btn btn-lg btn-secondary col-sm-6 col-sm-offset-3'> Bars ▶︎ </button></div>
-                </Link>
+                <nav className="navbar navbar-light" style={styles.navBg}>
+                  <Link to='/'>
+                  <a className="navbar-brand" style={{color: 'black'}}>Mixology University</a>
+                  </Link>
+                  <ul className="nav navbar-nav" style={{float: "right"}}>
+                    <li className="nav-item active" >
+                      <Link to='/menu'><a className="nav-link"style={{color: 'black'}}>Library <span className="sr-only">(current)</span></a></Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to='/barpage'><a className="nav-link" style={{color: 'black'}}>Bars</a></Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to='/homebrew'><a className="nav-link" style={{color: 'black'}}>Brew</a></Link>
+                    </li>
+                  </ul>
+                </nav>
+              <div className='jumbotron col-sm-12 text-center jumbotron-fluid' style={styles.transparentBg}>
+                <img src='../../slack-imgs.com.jpeg'/>
+                <h1 style={{color: 'white'}}>The Future is Now</h1>
               </div>
+
             </div>
         );
       }

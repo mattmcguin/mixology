@@ -95,11 +95,11 @@ var Menu = React.createClass({
   } else {
     return this.state.drinkList.map(function (index) {
       return (
-        <div style={{color: 'black'}}>
+        <div style={{color: 'white'}}>
           <li>
             <div>
             <button type='button' className='btn btn-danger' style={{float: "right"}} onClick={function() {this.removeDrink(index)}.bind(this)}> X </button>
-            <a href={index.url} style={{color: 'black'}}>
+            <a href={index.url} style={{color: 'white'}}>
               <h4 key={index}>{index.name}</h4>
               <p>{index.ingredients}</p>
             </a>
@@ -173,18 +173,31 @@ var Menu = React.createClass({
     this.setLocalStorage();
     return (
       <div>
-        <Link to='/'>
-        <button type='button' className='btn btn-secondary col-sm-2' style={{float: "right"}}> Home </button>
-        </Link>
+        <nav className="navbar navbar-light" style={styles.navBg}>
+          <Link to='/'>
+          <a className="navbar-brand" style={{color: 'black'}}>Mixology University</a>
+          </Link>
+          <ul className="nav navbar-nav" style={{float: "right"}}>
+            <li className="nav-item active" >
+              <Link to='/menu'><a className="nav-link"style={{color: 'black'}}>Library <span className="sr-only">(current)</span></a></Link>
+            </li>
+            <li className="nav-item">
+              <Link to='/barpage'><a className="nav-link" style={{color: 'black'}}>Bars</a></Link>
+            </li>
+            <li className="nav-item">
+              <Link to='/homebrew'><a className="nav-link" style={{color: 'black'}}>Brew</a></Link>
+            </li>
+          </ul>
+        </nav>
         <div className ='jumbotron col-sm-12 text-center' style={styles.transparentBg}>
-          <h1><i>Cocktail Menu</i></h1>
-          <button type='button' className='btn btn-secondary btn-lg' disabled={this.state.popularButtonDisabled} style={styles.rightspace} onClick={this.handlePopSort}> Popular </button>
-        <button type='button' className='btn btn-secondary btn-lg' disabled={this.state.alphabeticalButtonDisabled} onClick={this.handleAlphSort}> Alphabetical </button>
+          <h1 style={{color: 'white'}}><i>Cocktail Menu</i></h1>
+          <button type='button' className='btn btn-primary btn-lg' disabled={this.state.popularButtonDisabled} style={styles.rightspace} onClick={this.handlePopSort}> Popular </button>
+        <button type='button' className='btn btn-primary btn-lg' disabled={this.state.alphabeticalButtonDisabled} onClick={this.handleAlphSort}> Alphabetical </button>
         </div>
         <div className="jumbotron" style={styles.transparentBg}>
         <form onSubmit={this.handleSubmit}>
         <div className="form-group col-sm-4">
-        <label>Drink Name*</label>
+        <label style={{color: 'white'}}>Drink Name*</label>
         <input
           className='form-control'
           type='text'
@@ -195,7 +208,7 @@ var Menu = React.createClass({
         <small className="text-muted">*Must input a drink name*</small>
         </div>
         <div className="form-group col-sm-6">
-           <label for="drinkIngredientsInput">Drink Ingredients</label>
+           <label for="drinkIngredientsInput" style={{color: 'white'}}>Drink Ingredients</label>
         <input
           className='form-control'
           type='text'
@@ -204,7 +217,7 @@ var Menu = React.createClass({
           onChange={this.handleNewIngredientsChange}
         />
         </div>
-        <button type='submit' className='btn btn-primary'> Submit </button>
+        <button type='submit' className='btn btn-primary' style={styles.space}> Submit </button>
         </form>
         </div>
         <div className='btn-group'>

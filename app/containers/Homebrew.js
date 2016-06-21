@@ -8,8 +8,9 @@ var selectedIngredients = [];
 var Homebrew = React.createClass({
 
   getInitialState: function () {
-
+    localStorage.setItem('finalDrinkList', '');
     return {
+      finalDrinkList: [],
       drinkList: JSON.parse(localStorage.getItem('drinkList')),
       ingredientList: ['Alize Cognac',
                       'Apple Pucker Schnapps',
@@ -108,14 +109,14 @@ var Homebrew = React.createClass({
   },
 
   onSubmit: function () {
-    var finalDrinkList = [];
-    for (k = 0; k < this.state.drinkList.length; k++) {
-      finalDrinkList[k] = this.state.drinkList[k].ingredients;
+    var ingredientCheckList = [];
+    for (var k = 0; k < this.state.drinkList.length; k++) {
+      ingredientCheckList[k] = this.state.drinkList[k].ingredients;
     };
 
-    for (i = 0; i < this.state.ingredientList.length; i++) {
-      for (j = 0; j < finalDrinkList.length; j++) {
-        if (finalDrinkList[j].indexOf(this.state.ingredientList[i]) > -1) {
+    for (var i = 0; i < this.state.ingredientList.length; i++) {
+      for (var j = 0; j < ingredientCheckList.length; j++) {
+        if (ingredientCheckList[j].indexOf(this.state.ingredientList[i]) > -1) {
 
           this.state.drinkList.splice(j, 1, '');
         };
@@ -125,7 +126,11 @@ var Homebrew = React.createClass({
     while (this.state.drinkList.indexOf('') > -1) {
       this.state.drinkList.splice(this.state.drinkList.indexOf(''), 1);
     };
+
+    localStorage.setItem('finalDrinkList', JSON.stringify(this.state.drinkList));
+
   },
+
 
 showIngredientList19: function () {
 
@@ -219,26 +224,61 @@ showIngredientList76: function () {
 render: function () {
   return (
     <div>
-    <Link to='/'>
-      <button type='button' className='btn btn-secondary col-sm-12' > Home </button>
-    </Link>
-    <h1> Show Us Whatchu Got</h1>
-    <h2> Ingredients </h2>
-    <h3> Liquors </h3>
-    <ul>
+    <nav className="navbar navbar-light" style={styles.navBg}>
+      <Link to='/'>
+      <a className="navbar-brand" style={{color: 'black'}}>Mixology University</a>
+      </Link>
+      <ul className="nav navbar-nav" style={{float: "right"}}>
+        <li className="nav-item active" >
+          <Link to='/menu'><a className="nav-link"style={{color: 'black'}}>Library <span className="sr-only">(current)</span></a></Link>
+        </li>
+        <li className="nav-item">
+          <Link to='/barpage'><a className="nav-link" style={{color: 'black'}}>Bars</a></Link>
+        </li>
+        <li className="nav-item">
+          <Link to='/homebrew'><a className="nav-link" style={{color: 'black'}}>Brew</a></Link>
+        </li>
+      </ul>
+    </nav>
+    <h1 className='text-center' style={{color: 'white'}}> Show Us Whatchu Got</h1>
+    <span className='jumbotron col-sm-12 jumbotron-fluid' style={styles.transparentBg}>
+    <div className='jumbotron col-sm-3 jumbotron-fluid' style={styles.transparentBg}>
+    <h3 style={{color: 'white'}}> Liquors </h3>
+    <ul style={{color: 'white'}}>
     {this.showIngredientList19()}
     </ul>
-    <h3> Liqueurs </h3>
-    <ul> {this.showIngredientList37()} </ul>
-    <h3> Mixers </h3>
-    <ul> {this.showIngredientList51()} </ul>
-    <h3> Beers </h3>
-    <ul> {this.showIngredientList54()} </ul>
-    <h3> Fruits </h3>
-    <ul> {this.showIngredientList66()} </ul>
-    <h3> Miscellaneous </h3>
-    <ul> {this.showIngredientList76()}</ul>
-    <button type='button' onClick={this.onSubmit}>Submit to me </button>
+    </div>
+    <div className='jumbotron col-sm-3 jumbotron-fluid' style={styles.transparentBg}>
+    <h3 style={{color: 'white'}}> Liqueurs </h3>
+    <ul style={{color: 'white'}}> {this.showIngredientList37()} </ul>
+    </div>
+    <div className='jumbotron col-sm-3 jumbotron-fluid' style={styles.transparentBg}>
+    <h3 style={{color: 'white'}}> Mixers </h3>
+    <ul style={{color: 'white'}}> {this.showIngredientList51()} </ul>
+    </div>
+    
+    
+    <div className='jumbotron col-sm-3 jumbotron-fluid' style={styles.transparentBg}>
+    <h3 style={{color: 'white'}}> Beers </h3>
+    <ul style={{color: 'white'}}> {this.showIngredientList54()} </ul>
+    </div>
+    </span>
+    <span className='jumbotron col-sm-12 jumbotron-fluid' style={styles.transparentBg}>
+    <div className='jumbotron col-sm-3 jumbotron-fluid' style={styles.transparentBg}>
+    <h3 style={{color: 'white'}}> Fruits </h3>
+    <ul style={{color: 'white'}}> {this.showIngredientList66()} </ul>
+    </div>
+    <div className='jumbotron col-sm-3 jumbotron-fluid' style={styles.transparentBg}>
+    <h3 style={{color: 'white'}}> Miscellaneous </h3>
+    <ul style={{color: 'white'}}> {this.showIngredientList76()}</ul>
+    </div>
+    </span>
+    <div className='text-center'>
+    <Link to='/resultspage'>
+    <button type='button' className='btn btn-lg btn-primary' onClick={this.onSubmit}>Submit to me </button>
+    </Link>
+    <h1> </h1>
+    </div>
     </div>
     );
   },

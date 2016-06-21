@@ -1,6 +1,9 @@
 var styles = {
   transparentBg: {
-    background: 'transparent',
+    background: 'black',
+  },
+  navBg: {
+    background: 'white',
   },
   space: {
     marginTop: '25px',
@@ -17,6 +20,9 @@ var styles = {
   trailspace: {
     marginBottom: '10px'
   },
+  jumbo: {
+    padding: '0px'
+  }
 };
 
 module.exports = styles;

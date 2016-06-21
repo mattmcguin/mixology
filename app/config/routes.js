@@ -8,6 +8,7 @@ var Main = require('../components/Main');
 var BarPage = require('../containers/BarPage');
 var Menu = require('../containers/Menu');
 var Homebrew = require('../containers/Homebrew');
+var ResultsPage = require('../containers/ResultsPage');
 
 var routes = (
 
@@ -16,6 +17,7 @@ var routes = (
       <Route path='/homebrew' component={Homebrew}/>
       <Route path='/barpage' component={BarPage}/>
       <Route path='/menu' component={Menu}/>
+      <Route path='/resultspage' component={ResultsPage}/>
   </Router>
 );
 
